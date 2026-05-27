@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
+import { useEffect } from "react";
+import { saveMission, loadMission } from "../storage/missionStorage";
 
 type MissionData = {
   energy: number;
@@ -23,6 +25,22 @@ export function MissionProvider({ children }: { children: ReactNode }) {
     communication: true,
     orbitalStability: "Estável",
   });
+
+  useEffect(() => {
+  async function fetchMission() {
+    const savedMission = await loadMission();
+
+    if (savedMission) {
+      setMission(savedMission);
+    }
+  }
+
+  fetchMission();
+}, []);
+
+useEffect(() => {
+  saveMission(mission);
+}, [mission]);
 
   function updateMission(data: Partial<MissionData>) {
     setMission((prev) => ({

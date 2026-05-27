@@ -1,9 +1,10 @@
 import { ScrollView, Text } from "react-native";
 import { useMission } from "../contexts/MissionContext";
 import SensorCard from "../components/SensorCard";
+import { Pressable } from "react-native";
 
 export default function Dashboard() {
-  const { mission } = useMission();
+  const { mission, updateMission } = useMission();
 
   return (
     <ScrollView
@@ -52,6 +53,30 @@ export default function Dashboard() {
         title="Estabilidade Orbital"
         value={mission.orbitalStability}
       />
+
+      <Pressable
+  onPress={() =>
+    updateMission({
+      energy: Math.floor(Math.random() * 100),
+    })
+  }
+  style={{
+    backgroundColor: "#00D4FF",
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 20,
+    alignItems: "center",
+  }}
+>
+  <Text
+    style={{
+      color: "#050816",
+      fontWeight: "bold",
+    }}
+  >
+    Atualizar Energia
+  </Text>
+</Pressable>
     </ScrollView>
   );
 }
