@@ -1,8 +1,9 @@
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, Pressable, View } from "react-native";
+
+import { router } from "expo-router";
+
 import { useMission } from "../contexts/MissionContext";
 import SensorCard from "../components/SensorCard";
-import { Pressable } from "react-native";
-import { router } from "expo-router";
 
 export default function Dashboard() {
   const { mission, updateMission } = useMission();
@@ -55,53 +56,76 @@ export default function Dashboard() {
         value={mission.orbitalStability}
       />
 
-      <Pressable
-  onPress={() =>
-  updateMission({
-    energy: Math.floor(Math.random() * 100),
-    fuel: Math.floor(Math.random() * 100),
-    temperature: Math.floor(Math.random() * 100),
-    communication: Math.random() > 0.5,
-  })
-}
-  style={{
-    backgroundColor: "#00D4FF",
-    padding: 15,
-    borderRadius: 10,
-    marginTop: 20,
-    alignItems: "center",
-  }}
->
-  <Text
-    style={{
-      color: "#050816",
-      fontWeight: "bold",
-    }}
-  >
-    Atualizar Energia
-  </Text>
+      <View
+        style={{
+          marginTop: 20,
+          gap: 15,
+        }}
+      >
+        <Pressable
+          onPress={() =>
+            updateMission({
+              energy: Math.floor(Math.random() * 100),
+              fuel: Math.floor(Math.random() * 100),
+              temperature: Math.floor(Math.random() * 100),
+              communication: Math.random() > 0.5,
+            })
+          }
+          style={{
+            backgroundColor: "#00D4FF",
+            padding: 15,
+            borderRadius: 10,
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              color: "#050816",
+              fontWeight: "bold",
+            }}
+          >
+            Atualizar Sensores
+          </Text>
+        </Pressable>
 
-  <Pressable
-  onPress={() => router.push("/alerts")}
-  style={{
-    backgroundColor: "#FF3B30",
-    padding: 15,
-    borderRadius: 10,
-    marginTop: 15,
-    alignItems: "center",
-  }}
->
-  <Text
-    style={{
-      color: "white",
-      fontWeight: "bold",
-    }}
-  >
-    Ver Alertas
-  </Text>
-</Pressable>
+        <Pressable
+          onPress={() => router.push("/alerts")}
+          style={{
+            backgroundColor: "#FF3B30",
+            padding: 15,
+            borderRadius: 10,
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+              fontWeight: "bold",
+            }}
+          >
+            Ver Alertas
+          </Text>
+        </Pressable>
 
-</Pressable>
+        <Pressable
+          onPress={() => router.push("/update")}
+          style={{
+            backgroundColor: "#00FF99",
+            padding: 15,
+            borderRadius: 10,
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              color: "#050816",
+              fontWeight: "bold",
+            }}
+          >
+            Atualizar Missão
+          </Text>
+        </Pressable>
+      </View>
     </ScrollView>
   );
 }
