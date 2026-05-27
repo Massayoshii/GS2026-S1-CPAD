@@ -1,6 +1,5 @@
 
 {
-  "main": "expo-router/entry",
   "name": "central-espacial",
   "main": "expo-router/entry",
   "version": "1.0.0",
