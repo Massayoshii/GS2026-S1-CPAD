@@ -19,7 +19,7 @@ export function MissionProvider({ children }: { children: ReactNode }) {
   const [mission, setMission] = useState<MissionData>({
     energy: 78,
     temperature: 32,
-    fuel: 65,
+    fuel: 10,
     communication: true,
     orbitalStability: "Estável",
   });

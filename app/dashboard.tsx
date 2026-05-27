@@ -1,11 +1,12 @@
-import { View, Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 import { useMission } from "../contexts/MissionContext";
+import SensorCard from "../components/SensorCard";
 
 export default function Dashboard() {
   const { mission } = useMission();
 
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
         backgroundColor: "#050816",
@@ -23,25 +24,34 @@ export default function Dashboard() {
         Dashboard da Missão
       </Text>
 
-      <Text style={{ color: "white", fontSize: 18, marginBottom: 10 }}>
-        Energia: {mission.energy}%
-      </Text>
+      <SensorCard
+        title="Energia"
+        value={`${mission.energy}%`}
+        status={mission.energy < 30 ? "critical" : "normal"}
+      />
 
-      <Text style={{ color: "white", fontSize: 18, marginBottom: 10 }}>
-        Temperatura: {mission.temperature}°C
-      </Text>
+      <SensorCard
+        title="Temperatura"
+        value={`${mission.temperature}°C`}
+        status={mission.temperature > 70 ? "warning" : "normal"}
+      />
 
-      <Text style={{ color: "white", fontSize: 18, marginBottom: 10 }}>
-        Combustível: {mission.fuel}%
-      </Text>
+      <SensorCard
+        title="Combustível"
+        value={`${mission.fuel}%`}
+        status={mission.fuel < 20 ? "critical" : "normal"}
+      />
 
-      <Text style={{ color: "white", fontSize: 18, marginBottom: 10 }}>
-        Comunicação: {mission.communication ? "Online" : "Offline"}
-      </Text>
+      <SensorCard
+        title="Comunicação"
+        value={mission.communication ? "Online" : "Offline"}
+        status={mission.communication ? "normal" : "critical"}
+      />
 
-      <Text style={{ color: "white", fontSize: 18 }}>
-        Órbita: {mission.orbitalStability}
-      </Text>
-    </View>
+      <SensorCard
+        title="Estabilidade Orbital"
+        value={mission.orbitalStability}
+      />
+    </ScrollView>
   );
 }
