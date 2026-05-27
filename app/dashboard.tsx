@@ -25,7 +25,21 @@ export default function Dashboard() {
         }}
       >
         Dashboard da Missão
+        
       </Text>
+
+      <Text
+        style={{
+        color: "#8FA3C7",
+        marginBottom: 20,
+        fontSize: 16,
+        }}
+     >
+  Monitoramento orbital em tempo real
+</Text>
+      
+
+      
 
       <SensorCard
         title="Energia"

@@ -42,6 +42,44 @@ useEffect(() => {
   saveMission(mission);
 }, [mission]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMission((prev) => ({
+        ...prev,
+
+        energy: Math.max(
+          0,
+          Math.min(
+            100,
+            prev.energy + Math.floor(Math.random() * 11) - 5
+          )
+        ),
+
+        fuel: Math.max(
+          0,
+          Math.min(
+            100,
+            prev.fuel + Math.floor(Math.random() * 7) - 3
+          )
+        ),
+
+        temperature: Math.max(
+          -50,
+          Math.min(
+            150,
+            prev.temperature + Math.floor(Math.random() * 11) - 5
+          )
+        ),
+
+        communication: Math.random() > 0.1,
+      }));
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
+
   function updateMission(data: Partial<MissionData>) {
     setMission((prev) => ({
       ...prev,
