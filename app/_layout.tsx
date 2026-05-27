@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+
 import { MissionProvider } from "../contexts/MissionContext";
 
 export default function Layout() {
@@ -9,7 +10,13 @@ export default function Layout() {
           headerStyle: {
             backgroundColor: "#050816",
           },
-          headerTintColor: "#fff",
+
+          headerTintColor: "#00D4FF",
+
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+
           contentStyle: {
             backgroundColor: "#050816",
           },
